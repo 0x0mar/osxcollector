@@ -108,20 +108,20 @@ class RelatedDomainsFilter(OutputFilter):
     def _cooccurrences_to_domains(self, cooccurrence_info):
         domains = []
 
-        for cooccurence in cooccurrence_info:
+        for cooccurence in cooccurrence_info.values():
             for occur_domain in cooccurence.get('pfs2', []):
                 for elem in expand_domain(occur_domain[0]):
-                    domains.add(elem)
+                    domains.append(elem)
 
         return domains
 
     def _rr_history_to_domains(self, rr_history_info):
         domains = []
 
-        for rr_history in rr_history_info:
+        for rr_history in rr_history_info.values():
             for rr_domain in rr_history.get('rrs', []):
                 for elem in expand_domain(rr_domain['rr']):
-                    domains.add(elem)
+                    domains.append(elem)
 
         return domains
 
